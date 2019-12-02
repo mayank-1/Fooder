@@ -1,6 +1,5 @@
 # Online Food Delivery Portal
-
-Online Portal to Order Food at your Door-steps
+Built using Node.js, Express.js, Handlebars, Express-Session, MongoDB and other NPM Packages.
 
 # Installation
 
