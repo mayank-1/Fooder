@@ -13,4 +13,4 @@ Built using Node.js, Express.js, Handlebars, Express-Session, MongoDB and other 
 
 # LIVE DEMO
 
-https://team-fooder.herokuapp.com/
+https://team-fooder.herokuapp.com
