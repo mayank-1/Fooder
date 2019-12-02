@@ -1,0 +1,164 @@
+<div>
+   <div>
+      <div class="navigation">
+         <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand mb-0 p-0 text-warning h1" href="/consumer/home"><img
+                  src="/public/assets/logo-img/logonew.png" alt="new-logo" style="height: 50px;"> Fooder</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNavDropdown" class="navbar-collapse collapse">
+               <ul class="navbar-nav ml-auto">
+                  {{#if user}}
+                  <li class="nav-item mx-2">
+                     <a class="nav-link" href="/consumer/search"><i class="fa fa-search" aria-hidden="true"></i>
+                        Search</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                     <a class="nav-link" href="/consumer/offers">Offers<sup class="text-warning"><b>NEW</b></sup></a>
+                  </li>
+                  {{else}}
+                  <li class="nav-item mx-2">
+                     <a class="nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                     <a class="nav-link" href="/offers">Offers<sup class="text-warning"><b>NEW</b></sup></a>
+                  </li>
+                  {{/if}}
+                  {{#if user}}
+                  <li class="nav-item mx-2">
+                     <div class="d-flex">
+                        <div class="dropdown mr-1">
+                           <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                              <i class="fa fa-user mr-1"></i>{{user.name}}
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                              <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/logout">Logout</a>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  {{else}}
+                  <!--   Ends here     -->
+                  <li class="nav-item mx-2">
+                     <div class="d-flex">
+                        <div class="dropdown mr-1">
+                           <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                              <i class="fa fa-user mr-1"></i>Guest
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                              <a class="dropdown-item" href="/">Login</a>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  {{/if}}
+               </ul>
+            </div>
+         </nav>
+      </div>
+   </div>
+   <div class="conatiner"
+      style="background-image:linear-gradient(-143deg, rgb(167, 89, 255) 0%, rgb(55, 165, 255) 100%); height: 17rem; margin-top:7vh ;">
+      <br>
+      <br>
+      <br>
+      <h1 class="display-3 text-center" style="color:rgb(247, 243, 194)">Offers for you</h1>
+      <h5 class="text-center" style="color:rgb(247, 243, 194)">Explore top deals and offers exclusively for you!</h5>
+   </div>
+
+   <div class="shadow p-2 mb-5 bg-white rounded p-3">
+      <ul class="nav nav-tabs " id="myTab" role="tablist" style="margin-left: 12vw;">
+         <li class="nav-item ">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+               aria-selected="true">Resturant offers</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+               aria-selected="false">Payments Offers/Coupons</a>
+         </li>
+      </ul>
+   </div>
+   <div class="tab-content" id="myTabContent">
+
+      {{!-- Resturant Offers TAB --}}
+
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+         <div class="container">
+            <br>
+            <h3 style="margin-left: 4vw;">Top offers</h3>
+            <p style="margin-left: 4vw;">Top offers hand-picked for you</p>
+            <br>
+            <div class="d-flex flex-wrap p-1 justify-content-center">
+               {{#if user}}
+               {{#each data}}
+               <a style="color: inherit; text-decoration:none" href="/consumer/restaurant/{{this.restaurantId}}">
+                  <div class="card box m-2" style="width: 15rem;">
+                     <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                        width="110px">
+                     <div class="card-body">
+                        <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                        <small class="text-secondary">{{this.cuisine}} </small>
+                        <p class="card-text" style="font-size:14px;"><button type="button"
+                              class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                 class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins .
+                           ₹{{this.pricePerUnit}} for two</p>
+                        <hr>
+                        <p style="color: brown" class="mb-0 small"><i class="fa fa-fw fa-ticket"></i> {{this.discount}}%
+                           off on all orders </p>
+                     </div>
+                  </div>
+               </a>
+               {{/each}}
+               {{else}}
+               {{#each data}}
+               <a style="color: inherit; text-decoration:none" href="/restaurant/{{this.restaurantId}}">
+                  <div class="card box m-2" style="width: 15rem;">
+                     <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                        width="110px">
+                     <div class="card-body">
+                        <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                        <small class="text-secondary">{{this.cuisine}} </small>
+                        <p class="card-text" style="font-size:14px;"><button type="button"
+                              class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                 class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins .
+                           ₹{{this.pricePerUnit}} for two</p>
+                        <hr>
+                        <p style="color: brown" class="mb-0 small"><i class="fa fa-fw fa-ticket"></i> {{this.discount}}%
+                           off on all orders </p>
+                     </div>
+                  </div>
+               </a>
+               {{/each}}
+               {{/if}}
+
+
+            </div>
+         </div>
+      </div>
+
+      {{!-- Payment Offers / Coupons Tab  --}}
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+         <div class="container media-3">
+            <br>
+            <h3 class="display-4 d-flex justify-content-center">:( No Payment Offers</h3>
+            <br>
+            <div class="d-flex flex-wrap p-1 justify-content-center">
+
+            </div>
+         </div>
+      </div>
+      <br>
+      <br>
+      <div class="footer p-3 bg-light text-right" style="margin-top:35vh">
+         <a class="text-dark nav-link" href="/consumer/help"><i class="fa fa-life-ring" aria-hidden="true"></i>
+            Help</a>
+      </div>
+   </div>

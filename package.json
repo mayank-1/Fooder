@@ -1,0 +1,47 @@
+{
+  "name": "eagle-cautious-octo-enigma",
+  "version": "1.0.0",
+  "description": "A food delivery app like swiggy.com by attainU students.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attainu/eagle-cautious-octo-enigma.git"
+  },
+  "keywords": [
+    "attainu",
+    "css",
+    "html",
+    "javascript",
+    "mongodb",
+    "handlebars",
+    "express",
+    "node",
+    "swiggy",
+    "food",
+    "delivery"
+  ],
+  "author": "@sonutiwari @mayankkumar @ananta @rahulchawla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/attainu/eagle-cautious-octo-enigma/issues"
+  },
+  "homepage": "https://github.com/attainu/eagle-cautious-octo-enigma#readme",
+  "dependencies": {
+    "applicationinsights": "^1.6.0",
+    "async": "^3.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.17.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.7.12",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.4"
+  },
+  "devDependencies": {}
+}

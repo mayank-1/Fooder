@@ -1,0 +1,276 @@
+<div>
+   <div class="navigation">
+      <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+         <a class="navbar-brand mb-0 p-0 text-warning h1" href="/consumer/home"><img
+               src="/public/assets/logo-img/logonew.png" alt="new-logo" style="height: 50px;"> Fooder</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+               {{#if user}}
+               <li class="nav-item mx-2">
+                  <a class="nav-link" href="/consumer/offers">Offers<sup class="text-warning"><b>NEW</b></sup></a>
+               </li>
+               {{else}}
+               <li class="nav-item mx-2">
+                  <a class="nav-link" href="/offers">Offers<sup class="text-warning"><b>NEW</b></sup></a>
+               </li>
+               {{/if}}
+               {{#if user}}
+               <li class="nav-item mx-2">
+                  <div class="d-flex">
+                     <div class="dropdown mr-1">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                           <i class="fa fa-user mr-1"></i>{{user.name}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                           <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                           <div class="dropdown-divider"></div>
+                           <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               {{else}}
+               <!--   Ends here     -->
+               <li class="nav-item mx-2">
+                  <div class="d-flex">
+                     <div class="dropdown mr-1">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                           <i class="fa fa-user mr-1"></i>Guest
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                           <a class="dropdown-item" href="/">Login</a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               {{/if}}
+            </ul>
+         </div>
+      </nav>
+   </div>
+
+   <form class="form" method="POST">
+      <div class=" container d-flex justify-content-center">
+
+         <div class="form-group">
+            <div class="searchbar form-group" style="margin-top: 8rem ; width:60vw ;">
+               <input class="form-control" type="search" placeholder="Search for restaurants or dishes"
+                  aria-label="Search" name="query" style="padding: 30px;">
+            </div>
+
+         </div>
+
+      </div>
+   </form>
+
+   <div class="navigation container d-flex justify-content-center">
+
+      <div style="width: 60vw;">
+         <div class="p-2 mb-2 mt-4 bg-white rounded p-3">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+               <li class="nav-item ">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                     aria-controls="home" aria-selected="true">Resturants</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                     aria-controls="profile" aria-selected="false">Dishes</a>
+               </li>
+               {{!-- <li class="nav-item dropdown" style="margin-left: 26rem;">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                     aria-expanded="false">Relevance</a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="#">Delivery time</a>
+                     <a class="dropdown-item" href="#">Rating</a>
+                     <a class="dropdown-item" href="#">Cost for two</a>
+                  </div>
+               </li> --}}
+            </ul>
+         </div>
+
+      </div>
+   </div>
+
+   {{#if message}}
+   <div class="container d-flex flex-wrap justify-content-center mt-5" style="width 60vw">
+      <h3 class="display-4"> {{message}}</h3>
+   </div>
+   {{/if}}
+
+   <div class="container  d-flex flex-wrap justify-content-center">
+
+      <div class="tab-content" id="myTabContent">
+
+         {{!-- Resturant TAB --}}
+         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+            style="width: 60vw;">
+            {{#if noResult}}
+            <h4 class="text-muted font-weight-normal d-flex justify-content-center mb-5 mt-4">{{noResult}}</h4>
+            {{/if}}
+            {{#if messagetab1}}
+            <h4 class="text-dark p-1 m-1 ">{{messagetab1}}</h4>
+            {{/if}}
+            <div class="container d-flex flex-wrap p-1">
+               {{#if user}}
+               {{#each restaurantsfound}}
+
+               <a style="color: inherit; text-decoration:none" href="/consumer/restaurant/{{this._id}}">
+                  <div class="card box m-2 my-card ">
+                     <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                        width="110px">
+                     <div class="card-body">
+                        <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                        <small class="text-secondary">{{this.cuisine}} </small>
+                        <p class="card-text" style="font-size:14px;"><button type="button"
+                              class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                 class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins . Open</p>
+                     </div>
+                  </div>
+               </a>
+               {{/each}}
+               {{else}}
+               {{#each restaurantsfound}}
+               <a style="color: inherit; text-decoration:none" href="/restaurant/{{this._id}}">
+                  <div class="card box m-2 my-card"> 
+                     <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                        width="110px">
+                     <div class="card-body">
+                        <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                        <small class="text-secondary">{{this.cuisine}} </small>
+                        <p class="card-text" style="font-size:14px;"><button type="button"
+                              class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                 class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins . Open</p>
+                     </div>
+                  </div>
+               </a>
+               {{/each}}
+               {{/if}}
+
+            </div>
+            <div>
+               {{#if messagetab2}}
+               <h4 class="text-dark p-1 m-1 ">{{messagetab2}}</h4>
+               {{/if}}
+               <div class="container d-flex flex-wrap p-1">
+                  {{#if user}}
+                  {{#each morerestaurants}}
+                  <a style="color: inherit; text-decoration:none" href="/consumer/restaurant/{{this._id}}">
+                     <div class="card box m-2 my-card" >
+                        <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                           width="110px">
+                        <div class="card-body">
+                           <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                           <small class="text-secondary">{{this.cuisine}} </small>
+                           <p class="card-text" style="font-size:14px;"><button type="button"
+                                 class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                    class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins . Open</p>
+                        </div>
+                     </div>
+                  </a>
+                  {{/each}}
+                  {{else}}
+                  {{#each morerestaurants}}
+                  <a style="color: inherit; text-decoration:none" href="/restaurant/{{this._id}}">
+                     <div class="card box m-2 my-card" >
+                        <img class="card-img-top" src="{{this.restaurantImageURL}}" alt="Card image cap" height="160px"
+                           width="110px">
+                        <div class="card-body">
+                           <p class="font-weight-bold mb-0">{{this.restaurantName}}</p>
+                           <small class="text-secondary">{{this.cuisine}} </small>
+                           <p class="card-text" style="font-size:14px;"><button type="button"
+                                 class="btn btn-success btn-sm p-0 pr-1 pl-1" style="font-size: 11px;"><i
+                                    class="fa fa-star" aria-hidden="true"></i> 4.3</button> . 45mins . Open</p>
+                        </div>
+                     </div>
+                  </a>
+                  {{/each}}
+                  {{/if}}
+               </div>
+            </div>
+         </div>
+         {{!-- dishes Tab  --}}
+
+         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab" style="width: 60vw;">
+            <div class="container">
+               {{#if noResult}}
+               <h4 class="text-muted font-weight-normal d-flex justify-content-center mb-5 mt-4">{{noResult}}</h4>
+               {{/if}}
+               {{#if user}}
+               <div class="lists">
+                  {{#each dishes}}
+                  <div class="container bg-light p-3 mt-4 border">
+                     <a style="color: inherit; text-decoration:none" href="/consumer/restaurant/{{this._id}}">
+                        <small class="text-primary float-right font-weight-bold">SEE MENU</small>
+                     </a>
+                     <p class="font-weight-bold mb-0 ml-3">{{this.restaurantName}}</p>
+                     <small class="text-secondary mb-0 ml-3">{{this.cuisine}}</small><br>
+                     <small class="font-weight-normal  ml-3">4.3 . 35 Mins . ₹ {{this.dishes.[0].pricePerUnit}}</small>
+                  </div>
+                  {{#if this.dishes}}
+                  {{#each this.dishes}}
+                  <div class="container bg-white p-3 border">
+                     <button type="button"
+                        class="btn btn-outline-dark btn-sm float-right text-success p-0 pr-2 pl-2 font-italic"
+                        disabled>ADD</button>
+                     <p class="font-weight-bold mb-0 ml-3 small">{{this.dishName}}</p>
+                     <p class="text-secondary mb-0 ml-3 small">{{this.dishDescription}}</p>
+                     <small class="font-weight-normal  ml-3">₹ {{this.pricePerUnit}}</small>
+                  </div>
+                  {{/each}}
+                  {{else}}
+                  <div class="container bg-white p-3 border mb-3">
+                     <p class="font-weight-bold mb-0 ml-3 small"></p>
+                     <p class="text-secondary mb-0 ml-3 small">:(</p>
+                     <small class="font-weight-normal  ml-3">We are currently unavailable</small>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+               </div>
+               {{else}}
+               <div class="lists">
+                  {{#each dishes}}
+                  <div class="container bg-light p-3 mt-4 border">
+                     <a style="color: inherit; text-decoration:none" href="/restaurant/{{this._id}}">
+                        <small class="text-primary float-right font-weight-bold">SEE MENU</small>
+                     </a>
+                     <p class="font-weight-bold mb-0 ml-3">{{this.restaurantName}}</p>
+                     <small class="text-secondary mb-0 ml-3">{{this.cuisine}}</small><br>
+                     <small class="font-weight-normal  ml-3">4.3 . 35 Mins . ₹ {{this.dishes.[0].pricePerUnit}}</small>
+                  </div>
+                  {{#if this.dishes}}
+                  {{#each this.dishes}}
+                  <div class="container bg-white p-3 border">
+                     <button type="button"
+                        class="btn btn-outline-dark btn-sm float-right text-success p-0 pr-2 pl-2 font-italic"
+                        disabled>ADD</button>
+                     <p class="font-weight-bold mb-0 ml-3 small">{{this.dishName}}</p>
+                     <p class="text-secondary mb-0 ml-3 small">{{this.dishDescription}}</p>
+                     <small class="font-weight-normal  ml-3">₹ {{this.pricePerUnit}}</small>
+                  </div>
+                  {{/each}}
+                  {{else}}
+                  <div class="container bg-white p-3 border mb-3">
+                     <p class="font-weight-bold mb-0 ml-3 small"></p>
+                     <p class="text-secondary mb-0 ml-3 small">:(</p>
+                     <small class="font-weight-normal  ml-3">We are currently unavailable</small>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+               </div>
+               {{/if}}
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="footer p-3 bg-light text-right" style="margin-top: 45vh;">
+      <a class="text-dark nav-link" href="/consumer/help"><i class="fa fa-life-ring" aria-hidden="true"></i>
+         Help</a>
+   </div>
+</div>

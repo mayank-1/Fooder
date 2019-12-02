@@ -1,0 +1,25 @@
+<div class="card col-8 mx-auto my-5 shadow border border-warning">
+    <div class="card-body">
+        <h3 class="card-title">Order Confirmation</h3>
+        <hr>
+        <h5 class="card-title mt-5">{{user.name}} 's Order from {{orderFromRes}}</h5>
+        <div class="row border border-warning rounded p-3 shadow">
+            <div class="col-8">
+                {{#each data.formData.itemName}}
+                {{#if @last}}
+                <span class="card-text font-weight-bold">Total Amount Payable (in <i class="fa fa-inr" aria-hidden="true"></i>) </span>
+                {{/if}}
+                <p class="card-text">{{this}}</p>
+                {{/each}}
+            </div>
+            <div class="col-4">
+                {{#each data.formData.itemCost}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+        </div>
+        <hr>
+        <a href="/consumer/home" class="card-link mt-5"><img src="./../public/assets/logo-img/logonew.png" width="100px"
+                height="100px"></a>
+    </div>
+</div>

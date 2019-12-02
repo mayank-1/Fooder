@@ -1,0 +1,220 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova&display=swap">
+<style>
+    @media (max-width: 960px) {
+        .modal.fade:not(.in).right .modal-dialog {
+            -webkit-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+            top: -30px;
+            font-family: 'Ibarra Real Nova', serif;
+        }
+    }
+
+    @media (min-width: 961px) {
+        .modal.fade:not(.in).right .modal-dialog {
+            -webkit-transform: translate3d(80%, 0, 0);
+            transform: translate3d(80%, 0, 0);
+            top: -30px;
+            font-family: 'Ibarra Real Nova', serif;
+        }
+    }
+</style>
+<div class="container-fluid" style="height: 100vh; padding: 0px;">
+    <div class="row" style="margin: 0px; height: 90vh;">
+        {{!-- Navigation starts here. --}}
+        <div class="col-xs-12 col-md-7" style="padding: 0px;">
+            <nav class=" navbar navbar-expand-lg navbar-light bg-light shadow p-2 mb-4 bg-white rounded">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <img src="./../public/assets/logo-img/logonew.png" alt="new-logo" style="height: 50px;">
+                    <a class="navbar-brand mb-0 text-warning h1" href="/">Fooder</a>
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="display: inline-block;float:right;">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-warning" data-toggle="modal"
+                                data-target="#loginModal">Log In
+                            </button>
+                            <button type="button" class="btn btn-dark" data-toggle="modal"
+                                data-target="#registerModal">Sign Up
+                            </button>
+                        </li>
+                    </ul>
+            </nav>
+            <div class="container">
+                <div class="row" style="background: #fff; margin: 0px;">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h1 id="unique-heading" class="font-weight-bolder mt-5 "></h1>
+                    </div>
+                </div>
+                <div class="row" style="background: #fff; margin: 0px;">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h4 class="text-muted font-weight-normal">Order food from favourite restaurants.</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="background: #fff; margin-left: 80px;">
+                    <div class="col-md-10 " style="text-align: center;">
+                        <a href="/allrestaurants"
+                            class="btn btn-outline-warning p-0 pr-5 pl-5 pt-3 pb-3 font-weight-bold m-0">View
+                            Restaurants</a>
+                    </div>
+                </div>
+                <br>
+                <div class="row " style="background: #fff; margin: 0px;">
+                    <div class="col-md-10 mt-3" style="margin-left : 12vw">
+                        <h6 class="text-muted font-weight-normal">POPULAR CITIES IN INDIA</h6>
+                        <div>
+                            <p class="text-muted font-weight-bold" style="display: inline;">Mumbai</p>
+                            <p class="text-muted font-weight-normal" style="display: inline;">Bangalore</p>
+                            <p class="text-muted font-weight-bold" style="display: inline;">New Delhi</p>
+                            <p class="text-muted font-weight-normal" style="display: inline;">Kolkata</p>
+                            <p class="text-muted font-weight-bold" style="display: inline;">Chennai</p>
+                            <p class="text-muted font-weight-normal" style="display: inline;">Pune</p>
+                            <p class="text-muted font-weight-bold" style="display: inline;">Gurugram</p>
+                            <p class="text-muted font-weight-normal">Hyderabad & more</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if errorData}}
+        <div class="alert col-md-7 p-4 alert-{{errorData.errorType}} alert-dismissible fade show" role="alert"
+            style="position: absolute; top:0;">
+            <strong>Oops!</strong> {{errorData.errorMsg}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{/if}}
+        {{!-- Navigation Ends here. --}}
+        <div class="col-xs-12 col-md-5" style="padding: 0px;">
+            <img src="./../public/assets/landing-img/landing-1.jpg" class="img img-responsive col p-0"
+                style="height: 90vh;object-fit:cover">
+        </div>
+        <div class="row" style="background: #2b1e16; margin: 0px; color: antiquewhite;">
+
+            <div class="col-sm-4">
+                <div class="card" style="background: #2b1e16; margin: 70px 0px 0px 0px">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                        class="card-img-top" alt="..." style="height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Local Food at your convenience</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
+                            error
+                            iure
+                            doloremque modi ab natus aspernatur, nemo suscipit similique maiores ut libero deserunt
+                            dignissimos voluptate est impedit necessitatibus distinctio eius!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="background: #2b1e16;margin: 70px 0px 0px 0px">
+                    <img src="https://11m5ki43y82budjol1gjvv5s-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/hyperlocal-on-demand-delivery-the-%E2%80%98hyperlocal%E2%80%99-grocery.jpg"
+                        class="card-img-top" alt="..." style="height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Fast Delivery</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
+                            error
+                            iure
+                            doloremque modi ab natus aspernatur, nemo suscipit similique maiores ut libero deserunt
+                            dignissimos voluptate est impedit necessitatibus distinctio eius!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="background: #2b1e16;margin: 70px 0px 0px 0px">
+                    <img src="https://www.bcdtravel.com/move-be/wp-content/uploads/sites/122/credit-card-debit-card.jpg"
+                        class="card-img-top" alt="..." style="height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Secure payment</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
+                            error
+                            iure
+                            doloremque modi ab natus aspernatur, nemo suscipit similique maiores ut libero deserunt
+                            dignissimos voluptate est impedit necessitatibus distinctio eius!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="loginModal" class="modal fade right" role="dialog" aria-labelledby="loginTitle" aria-hidden="true"
+    tabindex="-1" style="height: fit-content;">
+    <div class="modal-dialog" role="document">
+        <!-- Login Modal content-->
+        <div class="modal-content" style="min-height: 100vh;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="loginTitle">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <form action="/login" method="post" style="width: 100%;">
+                    <div class="form-group">
+                        <label for="user_id">Mobile / Email</label> <br>
+                        <input type="text" name="user_id" id="user_id" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-warning" style="width: 100%;">Login</button>
+                    <br>
+                    <br>
+                </form>
+            </div>
+            {{!--Login Modal footer ends here. --}}
+        </div>
+        {{!--Login Model content ends here. --}}
+    </div>
+    {{!--Login  Model  dialog ends here. --}}
+</div>
+{{!--Login  Model ends here. --}}
+
+{{!-- Signup modal Starts here --}}
+<div id="registerModal" class="modal fade right" role="dialog" aria-labelledby="registerTitle" aria-hidden="true"
+    tabindex="-1" style="height: fit-content;">
+    <div class="modal-dialog" role="document">
+        <!-- Modal content-->
+        <div class="modal-content" style="min-height: 100vh;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="registerTitle">Register</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/register" method="post" style="width: 100%;">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button">Role Type</button>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect03"
+                            aria-label="Example select with button addon" name="roleType" required>
+                            <option value="" selected>Choose...</option>
+                            <option value="consumer">Consumer</option>
+                            <option value="restaurant_owner">Restaurant Owner</option>
+                            <option value="delivery_guy">Delivery Guy</option>
+                        </select>
+                    </div>
+                    <label for="mobile_no">Mobile number</label> <br>
+                    <input type="number" name="mobile_no" id="reg_mobile_no" class="form-control" required> <br>
+                    <label for="name">Name</label> <br>
+                    <input type="text" name="name" id="name" class="form-control" required> <br>
+                    <label for="email">Email</label> <br>
+                    <input type="email" name="email" id="email" class="form-control" required> <br>
+                    <label for="password">Password</label> <br>
+                    <input type="password" name="password" id="password" class="form-control" required> <br>
+                    <button type="submit" class="btn btn-lg btn-warning" style="width: 100%;">Register</button> <br>
+                    <br>
+                    <p>By creating an account, <span class="text-info">I accept the Terms & Conditions</span></p>
+                </form>
+            </div>
+            {{!-- footer ends here. --}}
+        </div>
+        {{!-- Model content ends here. --}}
+    </div>
+    {{!-- Model  dialog ends here. --}}
+</div>
+{{!-- Model ends here. --}}

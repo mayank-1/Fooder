@@ -1,0 +1,191 @@
+<div class="navigation">
+    <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/consumer/home"><img src="./../public/assets/logo-img/logonew.png" alt="new-logo"
+                style="height: 45px;"></a>
+        <a class="navbar-brand mb-0 text-dark h1" href="/consumer/checkout">Secure checkout</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto mr-1" style="margin-right: 84px;">
+                <li class="nav-item mx-2">
+                    <div class="d-flex">
+                        <div class="dropdown mr-1">
+                            <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                <i class="fa fa-user mr-1"></i>{{user.name}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid" style="padding: 0px;">
+
+    {{!-- Address row --}}
+
+    <div class="row px-5 address-row" style="margin-top: 50px;">
+
+        {{!-- Enter address --}}
+        <div class="col-7 mt-5 mr-5">
+            <div class="card" style="margin-top: 12vh;">
+                <h5 class="card-header">Select Address</h5>
+                <div class="row">
+                    <div class="card-body mt-3 mx-3 text-center">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                {{!-- Address form --}}
+                                <form id="addressForm" name="addressForm">
+                                    <div class="form-group">
+                                        <label for="addrLine1" class="h5">New Address</label>
+                                        <input type="text" class="form-control mb-2" id="inputAddrLine1"
+                                            name="inputAddrLine1" placeholder="Address line 1" required />
+                                        <input type="text" class="form-control mb-2" id="inputAddrLine2"
+                                            name="inputAddrLine2" placeholder="Address line 2" required />
+                                        <div class="form-row">
+                                            <input type="text" class="col mx-1 form-control mb-2" id="inputCity"
+                                                name="inputCity" placeholder="City" required />
+                                            <input type="text" class="col mx-1 form-control mb-2" id="inputPincode"
+                                                name="inputPincode" placeholder="Pincode" required />
+                                        </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary addr-btn">Add address</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- ORDER CART --}}
+        <div class="px-5 float-right mt-5 col-4">
+            <div class="px-4">
+                <p>
+                    <span class="h3 font-weight-bold">Cart Status</span>
+                    <span class="badge badge-danger ml-3 mb-2 p-2 text-uppercase">{{data.cart.length}} items</span>
+                </p>
+            </div>
+            <hr class="mr-5">
+            <div class="card">
+                <div class="card-header h4">
+                    Your Order
+                </div>
+                <div class="card-body">
+                    <form id="orderCart" class="card-text" method="POST" action="/consumer/orderConfirmation">
+                        {{#each data.cart}}
+                        <span class="py-3">
+                            <input type="text" class="col-6" name="itemName" id="itemName" value='{{dishName}}'
+                                style="border: none;" readonly>
+                            <span class=' px-1'><i class="fa fa-inr" aria-hidden="true"></i></span>
+                            <input type="text" class="col-3" name="itemCost" id="itemCost" value={{dishPrice}}
+                                style="border: none;" readonly>
+                        </span>
+                        <br />
+                        {{/each}}
+                        <br />
+                        <hr>
+                        <label type="text" class="col-6 h6">Amount to pay: </label>
+                        <span class=' px-1 h6'><i class="fa fa-inr" aria-hidden="true"></i></span>
+                        <input type="text" class="col-4 h6" name="itemName" id="itemName" value={{data.amountPayable}}
+                            style="border:
+                        none;" readonly>
+                        <br />
+                        <hr>
+
+                        <h5 class="card-title ml-4"><i class="fa fa-building px-2" aria-hidden="true"></i>Delivery
+                            Address</h5>
+
+                        <input class="card-text mx-5" id="addrLine1" readonly name="addrLine1" style="border: none;">
+                        <br />
+                        <input class="card-text mx-5" id="addrLine2" readonly name="addrLine2" style="border: none;">
+                        <br />
+                        <input class="card-text mx-5" id="cityName" readonly name="cityName" style="border: none;">
+                        <br />
+                        <input class="card-text mx-5" id="pinCode" readonly name="pinCode" style="border: none;">
+                        <br /><br /><br />
+                        <input class="btn btn-success mx-5 w-75" id="deliverBtn" type="submit" value='Deliver Here' hidden>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Payment Row --}}
+    <div class="row px-5 payment-row">
+        <div class="col-7 mt-5 mr-5">
+            <div class="card">
+                <h5 class="card-header">Payment Mode</h5>
+                <div class="row">
+                    <div class="card-body m-2">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fa fa-credit-card-alt px-3"
+                                        aria-hidden="true"></i>Credit/Debit Card/UPI</h5>
+
+                                <button class="btn btn-success mx-5">Order</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body m-2">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fa fa-money px-3" aria-hidden="true"></i>Cash
+                                </h5>
+                                <button class="btn btn-success mx-5">Order</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body m-2 text-center">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h3><span class="badge badge-success">Food Voucher</span> </h3>
+                                <input type="text" class="form-control mt-2" placeholder="Voucher No.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Footer --}}
+    <div class="footer p-3 mt-3 bg-light text-right">
+        <a class="text-dark nav-link" href="/consumer/help"><i class="fa fa-life-ring" aria-hidden="true"></i>
+            Help</a>
+    </div>
+</div>
+
+{{!-- Script --}}
+<script>
+
+    //Display Address
+
+    document.getElementById('addressForm').addEventListener('submit', function (e) {
+
+        e.preventDefault();
+
+        var inputAddr1 = $('#inputAddrLine1').val();
+        var inputAddr2 = $('#inputAddrLine2').val();
+        var inputCity = $('#inputCity').val();
+        var inputPincode = $('#inputPincode').val();
+        $('#addrLine1').attr('value', inputAddr1);
+        $('#addrLine2').attr('value', inputAddr2);
+        $('#cityName').attr('value', inputCity);
+        $('#pinCode').attr('value', inputPincode);
+        $('#deliverBtn').removeAttr('hidden');
+
+
+    }, false);
+
+</script>

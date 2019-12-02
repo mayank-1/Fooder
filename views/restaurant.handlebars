@@ -1,0 +1,284 @@
+<div class="navigation">
+    <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+
+        <a class="navbar-brand mb-0 p-0 text-warning h1" {{#if user}}href="/consumer/home" {{else}}href="/" {{/if}}><img
+                src="/public/assets/logo-img/logonew.png" alt="new-logo" style="height: 50px;"> Fooder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-2">
+                    <a class="nav-link" {{#if user}}href="/consumer/search" {{else}}href="/search" {{/if}}><i
+                            class="fa fa-search" aria-hidden="true"></i> Search</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" {{#if user}}href="/consumer/offers" {{else}}href="/offers" {{/if}}>Offers<sup
+                            class="text-warning"><b>NEW</b></sup></a>
+                </li>
+                {{#if user}}
+                <li class="nav-item mx-2">
+                    <div class="d-flex">
+                        <div class="dropdown mr-1">
+                            <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                <i class="fa fa-user mr-1"></i>{{user.name}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{else}}
+                <!--   Ends here     -->
+                <li class="nav-item mx-2">
+                    <div class="d-flex">
+                        <div class="dropdown mr-1">
+                            <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                <i class="fa fa-user mr-1"></i>Guest
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                <a class="dropdown-item" href="/">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/if}}
+                {{#if user}}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="#checkout">
+                        <span class="badge badge-primary mr-1 cart-count">{{cartCount}}</span>Cart
+                    </a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+{{!-- Restaurant header --}}
+<div class="container-fluid sticky-top" style="margin-top: 65px;">
+    <div class="row restaurant-header">
+        <div class="p-4 w-100 shadow " style="background-color: rgb(29, 25, 34); color: white">
+            <div class="row ml-4 pl-3">
+                <div class="p-2 rounded restaurant-thumb" style="border: solid 1px white">
+                    <img src="{{resImgUrl}}" width="250px" height="200px">
+                </div>
+
+                <div class="col-md-6 px-5 d-inline restaurant-detail">
+                    <p class="font-weight-bold d-inline h1">{{resName}}</p>
+                    <p class="font-weight-light">{{resCuisine}}</p>
+                    <p class="font-weight-light p-2 badge badge-success"><i class="fa fa-star pr-2"
+                            aria-hidden="true"></i>4.5</p>
+                    <p>
+                        <span class="font-weight-light">Open : 11:00 AM - 11:00 PM</span>
+                        <span class="px-3">|</span>
+                        <span class="font-weight-light">Price range: {{resPrice}}</span>
+                        <span class="px-3">|</span>
+                        <span class="font-weight-light">Delivery Time: 30 mins</span>
+                    </p>
+
+                    <p class="badge badge-pill badge-success p-2">OPEN</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Restaurant body --}}
+<div class="container-fluid ml-5 px-5">
+    <div class="row mb-3">
+        {{!-- SIDEBAR MENU --}}
+        <div class="col-2 mt-5 pt-4 sidebar-menu border-right">
+            <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="menu-tab" data-toggle="tab" href="#menu" role="tab"
+                        aria-controls="home" aria-selected="true">Menu</a>
+                </li>
+            </ul>
+        </div>
+        {{!-- MENU LIST --}}
+        <div class="col-6 mt-4 tab-content menu-section border-right">
+            {{!-- Menu section --}}
+            <div class="tab-pane active" id="menu" role="tabpanel" aria-labelledby="menu-tab">
+                <div class="mt-4">
+
+                    {{!-- If user is logged in allow to add to cart --}}
+                    {{#if user}}
+                    {{#if restMenu}}
+                    <h2 class="text-center">Dish List</h2>
+                    {{#each restMenu}}
+                    <div class="card my-2 w-100">
+                        <div class="card-body">
+                            <p class="card-text pull-left col-8 h6 p-0 m-0">{{this.dishName}}
+                                <span class="small text-secondary">- {{this.dishDescription}}</span>
+                            </p>
+                            <p class="card-text pull-left ml-5 h6 p-0 m-0"> + {{this.pricePerUnit}} <i class="fa fa-inr"
+                                    aria-hidden="true"></i>
+                            </p>
+                            <span class="card-text float-right">
+                                <button class="btn btn-outline-dark text-success btn-sm"
+                                    onclick="getCardInfo(this)">ADD</button>
+                            </span>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <h5 class="display-3 d-flex justify-content-center">Oops :(</h5>
+                    <p class="display-5 d-flex justify-content-center">No Menu Found. Please Come Back Later</p>
+                    {{/if}}
+                    {{/if}}
+                    {{!-- If user logged out, just browse menu and show no cart --}}
+                    {{#unless user}}
+                    {{#if restMenu}}
+                    <h2 class="text-center">Dish List</h2>
+                    {{#each restMenu}}
+                    <div class="card my-2 w-100">
+                        <div class="card-body">
+                            <p class="card-text pull-left col-6 h6 m-0 p-0">{{this.dishName}}
+                                <span class="small text-secondary">- {{this.dishDescription}}</span>
+                            </p>
+                            <p class="card-text pull-left ml-5 h6 m-0 p-0"> + {{this.pricePerUnit}} <i class="fa fa-inr"
+                                    aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <h5 class="display-3 d-flex justify-content-center">Oops :(</h5>
+                    <p class="display-5 d-flex justify-content-center">No Menu Found. Please Come Back Later</p>
+                    {{/if}}
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+        {{!-- CART SECTION --}}
+        {{#if user}}
+        <div class="col-3 mt-4 p-0 card cart-section">
+            {{!-- when CART is EMPTY --}}
+            <div class="card-header">
+                <span class="h4 font-weight-bold">Cart Status</span>
+                <span class="badge badge-danger h6 ml-3 mb-4 p-2 empty-cart">EMPTY</span>
+                <span class="badge badge-danger ml-3 mb-4 p-2 full-cart"></span>
+                <p class="h4 text-danger empty-cart">Add items to your cart!</p>
+            </div>
+            {{!-- order items go here --}}
+            <div class="card-body">
+                <form class="cart-details card-text" action="/consumer/checkout" method="POST">
+
+                    {{!-- items added to cart go here --}}
+                    <div class="order-cart">
+
+                    </div>
+
+                    {{!-- amount payable --}}
+                    <br />
+                    <hr>
+                    <span class="mt-4">
+                        <input class='col-7 h6' value="Amount to pay: " readonly style="border: none;">
+                        <span class=' px-1'><i class="fa fa-inr" aria-hidden="true"></i></span>
+                        <input class='col-3 amount-to-pay h6' name='amountToPay' style='border:none' readonly>
+                    </span>
+                    {{!-- submit form --}}
+                    <input type="submit" class="btn btn-primary btn-checkout my-4 ml-5 col-8" style="display: none;"
+                        id="checkout" value="Checkout">
+                </form>
+            </div>
+        </div>
+        {{/if}}
+        {{#unless user}}
+        <div class="col-3 mt-5 text-center">
+            <a href="/"><img src="/public/assets/restaurant-page-img/login.png" width="200px" height="200px"
+                    style="opacity: 80%;"></a>
+        </div>
+        {{/unless}}
+    </div>
+</div>
+</div>
+
+{{!-- Restaurant footer --}}
+<div class="footer p-4 mt-5 bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>ADDRESS</h5>
+                <hr>
+                <a class="text-dark" style="text-decoration: none;" href="#address"><i class="fa fa-map-marker"
+                        aria-hidden="true"></i>
+                    {{restAddress}}</a>
+            </div>
+            <div class="col-md-4">
+                <h5>CUISINES</h5>
+                <hr>
+                <p><i class="fa fa-cutlery" aria-hidden="true"></i> {{resCuisine}}</p>
+            </div>
+            <div class="col-md-4">
+                <h5>PHONE NUMBER</h5>
+                <hr>
+                <p><i class="fa fa-phone" aria-hidden="true"></i> 022-31245237</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- Script on each button --}}
+<script>
+    var dishNames = [];
+    var dishPrices = [];
+    function getCardInfo(obj) {
+        var toPay = 0;
+        var info = $(obj).closest('.card-body').children('p').text();
+        var itemContent = info.trim().split('+');
+        var itemName = itemContent[0];
+        var itemPrice = parseFloat(itemContent[1]);
+        var itemQty = $('.itemQty');
+        var totalCostOfItem = itemPrice;
+
+        if (dishNames.indexOf(itemName) === -1) {
+            dishNames.push(itemName);
+            dishPrices.push(itemPrice);
+            $('.full-cart').text(`${dishNames.length} items`);
+            $('.order-cart').prepend(`<div class="row"><span class='py-3'><input class='itemName col-8' name="itemName" value='${dishNames[dishNames.length - 1]}' style='border: none' readonly><i class="fa fa-inr" aria-hidden="true"></i><input class='itemCost col-3' name="itemCost" value='${dishPrices[dishPrices.length - 1]}' style='border: none' readonly></span></div>`);
+        }
+        else {
+            var itemIdx = dishNames.indexOf(itemName);
+            console.log(itemIdx);
+            dishPrices[itemIdx] += itemPrice;
+            console.log(dishPrices);
+            $('.order-cart').empty();
+            for (var i = 0; i < dishNames.length; i++) {
+                $('.order-cart').prepend(`<div class="row"><span class='py-3'><input class='itemName col-8' name="itemName" value='${dishNames[i]}' style='border: none' readonly><i class="fa fa-inr" aria-hidden="true"></i><input class='itemCost col-3' name="itemCost" value='${dishPrices[i]}' style='border: none' readonly></span></div>`);
+            }
+
+        }
+        console.log(dishNames, dishPrices);
+
+
+        // Hide and show elements on cart change
+        if (itemContent.length !== 0) {
+            $('.full-cart').show();
+            $('.btn-checkout').show();
+            $('.empty-cart').hide();
+            $('.alert-info').hide();
+        }
+
+        // Render the cart
+
+
+        var costElem = $('.itemCost');
+
+        for (var i = 0; i < costElem.length; i++) {
+            toPay += parseInt(costElem[i].value);
+        }
+
+        $('.cart-count').text(costElem.length);
+        $('.amount-to-pay').attr('value', `${toPay}`);
+    }
+
+</script>

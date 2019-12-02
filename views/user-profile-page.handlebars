@@ -1,0 +1,211 @@
+<div class="user-account">
+    <div class="navigation">
+        <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/consumer/home"><img src="./../public/assets/logo-img/logonew.png"
+                    alt="new-logo" style="height: 45px;"></a>
+            <a class="navbar-brand mb-0 text-dark h1" href="/consumer/profile">My Account</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNavDropdown" class="navbar-collapse collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/consumer/offers">Offers<sup class="text-warning">NEW</sup></a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <div class="d-flex">
+                            <div class="dropdown mr-1">
+                                <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                    <i class="fa fa-user mr-1"></i>{{user.name}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                    <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                                    <a class="dropdown-item" href="">Orders</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="content bg-info" style="min-height:100vh;">
+        <div class="ml-4 mt-5 d-flex flex-wrap">
+            <div class="p-1 mt-5">
+                <h1 class="text-white mb-0">{{user.name}}</h1>
+                <div class="d-flex text-white mt-0 mb-3">
+                    <div class="p-1">{{user.mobile}}</div>
+                    <div class="p-1">.</div>
+                    <div class="p-1">{{user.email}}</div>
+                </div>
+            </div>
+            <div class="p-5 mt-5 mr-3 ml-auto">
+                <a href="" class="btn border text-white border-white p-2" data-toggle="modal"
+                    data-target="#editProfileModel">EDIT PROFILE</a>
+            </div>
+        </div>
+        <div class="layer-1 mt-1 ml-4 bg-light" style="min-height:100vh;">
+            <div class="content p-5">
+                <div class="row ml-3 ">
+                    <div class="col-3 pl-3 pt-3 pr-0 mh-auto pb-5" style="background: #EDF1F7; width:18rem;">
+                        <div class="nav flex-column nav-pills flex-wrap" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <a class="nav-link active rounded-0 p-1" id="v-pills-home-tab" data-toggle="pill"
+                                href="#v-pills-orders" role="tab" aria-controls="v-pills-home"
+                                aria-selected="true">Orders</a>
+                            <a class="nav-link rounded-0 p-1" id="v-pills-profile-tab" data-toggle="pill"
+                                href="#v-pills-payments" role="tab" aria-controls="v-pills-profile"
+                                aria-selected="false">Payments</a>
+                            <a class="nav-link rounded-0 p-1" id="v-pills-messages-tab" data-toggle="pill"
+                                href="#v-pills-addresses" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">Addresses</a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="tab-content d-flex flex-wrap" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active p-1" id="v-pills-orders" role="tabpanel"
+                                aria-labelledby="v-pills-home-tab">
+                                <div class="row ml-1" style="text-align: center;">
+                                    {{#if this.orders.length}}
+                                    {{#each this.orders}}
+                                    <div class="card" style="margin: 5px;">
+                                        <div class="card shadow ">
+                                            <div class="card-header">
+                                                <h6 class="card-header-title"> Order Id: #{{_id}}</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{orderItems}}</h5>
+                                                <p class="card-text">
+                                                    items: {{orderItems}} <br>
+                                                    prices : {{orderItemPrices}} <br>
+                                                    Address : {{deliveryAddress.addressLine1}} <br>
+                                                    delivered By: {{deliveryPerson}} <br>
+                                                    payment method : {{paymentMethod}}
+                                                </p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <h5 class="card-footer-title">{{orderTotalPrice}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                    {{else}}
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <h1>No Order found</h1>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <img src="../public/assets/restaurant-page-img/emptycart.png"
+                                            alt="Empty cart Image" class="img img-responsive">
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="tab-pane fade p-1 mx-auto" id="v-pills-payments" role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab">
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+                                        <h1>No Payment method found</h1>
+                                        <img src="../public/assets/restaurant-page-img/emptycart.png"
+                                            alt="Empty cart Image" class="img img-responsive">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade p-1" id="v-pills-addresses" role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab">
+                                    {{#if this.addresses.length}}
+                                    <div class="row ml-1">
+                                        <h5 class="ml-1">{{this.addresses.length}} ADDRESSES FOUND</h5>
+                                    </div>
+                                    <div class="row ml-1" style="text-align: center;">
+                                    {{#each this.addresses}}
+                                    <div class="card" style="margin: 5px;">
+                                        <div class="card shadow ">
+                                            <div class="card-header">
+                                                <h6 class="card-header-title"> {{city}}</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{pincode}}</h5>
+                                                <p class="card-text">
+                                                    addressLine1: {{addressLine1}} <br>
+                                                    addressLine2: {{addressLine2}}
+                                                </p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <h5 class="card-footer-title">Home</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                    {{else}}
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <h1>No Addresses found</h1>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <img src="../public/assets/restaurant-page-img/emptycart.png"
+                                            alt="Empty cart Image" class="img img-responsive">
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL FOR EDIT PROFILE-->
+    <div class="modal fade" id="editProfileModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">UPDATE PROFILE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/consumer/save_new_user_details" method="POST">
+                    <div class="modal-body d-flex flex-wrap">
+                        <div class="form-group p-1">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="phone" name="phoneNumber" class="form-control" value={{this.user.mobile}} />
+                        </div>
+                        <div class="form-group p-1">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" value={{this.user.email}} />
+                        </div>
+                        <div class="form-group p-1">
+                            <label for="password">New Password</label>
+                            <input type="password" name="password" class="form-control" value="johndoe" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--MODAL ENDS HERE-->
+    <div class="footer p-3 bg-light text-right">
+        <a class="text-dark nav-link" href="/consumer/help"><i class="fa fa-life-ring" aria-hidden="true"></i>
+            Help</a>
+    </div>
+</div>

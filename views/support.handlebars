@@ -1,0 +1,280 @@
+<div class="div">
+    <div class="navigation">
+        <nav class="navbar shadow-lg bg-white fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/consumer/home"><img src="./../public/assets/logo-img/logonew.png"
+                    alt="new-logo" style="height: 45px;"></a>
+            <a class="navbar-brand mb-0 text-dark h1" href="/consumer/help">Help</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNavDropdown" class="navbar-collapse collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/offers">Offers<sup class="text-warning"><b>NEW</b></sup></a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <div class="d-flex">
+                            <div class="dropdown mr-1">
+                                <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                    <i class="fa fa-user mr-1"></i>{{user.name}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                    <a class="dropdown-item" href="/consumer/profile">Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<div class="content bg-info" style="min-height:100vh;">
+    <div class="ml-4 d-flex flex-wrap">
+        <div class="p-3 mt-5">
+            <h1 class="text-white mb-0" style="margin: 15px;">Help & Support</h1>
+            <div class="d-flex text-white mt-0 mb-3">
+                <div class="p-1">Let's take a step ahead and help you better.</div>
+            </div>
+        </div>
+    </div>
+    <div class="layer-1 mt-2 ml-4 bg-light" style="min-height:100vh;">
+        <div class="content p-3">
+            <div class="row ml-1">
+                <div class="col-3 pl-3 pt-3 pr-0 mh-auto pb-5" style="background: #EDF1F7; width:18rem;">
+                    <div class="nav flex-column nav-pills flex-wrap" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-link active rounded-0 p-1" id="v-pills-home-tab" data-toggle="pill"
+                            href="#v-pills-orders" role="tab" aria-controls="v-pills-home" aria-selected="true">New
+                            Issue</a>
+                        <a class="nav-link rounded-0 p-1" id="v-pills-history-tab" data-toggle="pill"
+                            href="#v-pills-hcontent" role="tab" aria-controls="v-pills-history"
+                            aria-selected="false">History</a>
+                        <a class="nav-link rounded-0 p-1" id="v-pills-profile-tab" data-toggle="pill"
+                            href="#v-pills-payments" role="tab" aria-controls="v-pills-profile"
+                            aria-selected="false">Legal, Terms & Conditions</a>
+                        <a class="nav-link rounded-0 p-1" id="v-pills-messages-tab" data-toggle="pill"
+                            href="#v-pills-addresses" role="tab" aria-controls="v-pills-messages"
+                            aria-selected="false">FAQs</a>
+                    </div>
+                </div>
+                <div class="col-9 ">
+                    <div class="tab-content d-flex flex-wrap" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active p-1" id="v-pills-orders" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">New Issue
+                            <hr>
+                            <form method="POST" action="/consumer/save_issue">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Query</label>
+                                    <textarea class="form-control" name="queryTextArea" id="exampleFormControlTextarea1"
+                                        rows="6" cols="60"></textarea>
+                                </div>
+                                <button type="submit" id="saveQueryBtn" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade p-1" id="v-pills-payments" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">Legal, Terms & Conditions
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Terms of Use
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                Privacy Policy
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Cancellations and Refunds
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade p-1" id="v-pills-addresses" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">FAQs
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                I entered the wrong CVV, why did my transaction still go through?
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                I want to provide feedback
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Can I order from any location?
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade p-1" id="v-pills-hcontent" role="tabpanel"
+                            aria-labelledby="v-pills-history-tab">Past Issues
+                            <hr>
+                            <div class="row ml-1" style="text-align: center;">
+                                {{#if this.issues.length}}
+                                {{#each this.issues}}
+                                <div class="card" style="margin: 5px;">
+                                    <div class="card shadow ">
+                                        <div class="card-header">
+                                            <h6 class="card-header-title">ID {{id}}</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Issue:</h5>
+                                            <p class="card-text">
+                                                {{text}}
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h5 class="card-footer-title">Status:</h5>
+                                            <small>{{status}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                                {{else}}
+                                <h1>No past queries found.</h1>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

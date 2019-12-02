@@ -1,0 +1,316 @@
+<!-- Main Content -->
+<div id="content">
+
+    <!-- Topbar -->
+    <nav class="navbar navbar-light bg-warning topbar mb-4 static-top shadow">
+
+        <!-- Topbar Search -->
+        <h3>Welcome, <span class="text-white">{{owner.name}}</span></h3>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+            <li><a href="/logout" class="btn btn-outline-danger">LOGOUT</a></li>
+        </ul>
+
+    </nav>
+    <!-- End of Topbar -->
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="secition-1">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings
+                                        (Monthly)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
+                                        (Annual)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Orders</div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total No Of Restaurants Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Restaurants
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{restaurantNo}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-home fa-2x text-gray-300" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-2">
+            <div class="row">
+                <div class="col">
+                    <div class="order-1">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2 mt-4">
+                            <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-plus" aria-hidden="true"></i> Restaurants
+                            </h1>
+                            {{#if fileNotSupportError}}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><i class="fa fa-frown-o" aria-hidden="true"></i> Oops!</strong> Image File Not
+                                Supported. Please Try Again
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {{/if}}
+                        </div>
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <form method="POST" action="/restaurant-owner/home/create/restaurant"
+                                    enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputResName">Restaurant Name</label>
+                                            <input type="text" class="form-control" name="restaurantName"
+                                                id="inputResName" placeholder="Enter Restaurant Name" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCategory">Category</label>
+                                            <select class="form-control" name="restaurantFoodCategory"
+                                                id="inputCategory" required>
+                                                <option value="">Choose One</option>
+                                                <option value="vg">Vegetarian</option>
+                                                <option value="nvg">Non-Vegetarian</option>
+                                                <option value="vgnvg">Both</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="picPhoto">Restaurant Photo</label>
+                                        <div class="input-group mb-3" id="picPhoto">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                    aria-describedby="inputGroupFileAddon01" name="restaurantPhoto"
+                                                    required>
+                                                <label class="custom-file-label" for="inputGroupFile01">Only PNG, JPEG,
+                                                    JPG & GIF files are allowed</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="inputAddress2">Address</label>
+                                            <input type="text" class="form-control" id="inputAddress2"
+                                                placeholder="Apartment, studio, or floor" name="restaurantStreet"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputCuisine">Cuisine</label>
+                                            <select class="form-control" id="inputCuisine" name="restaurantCuisine"
+                                                required>
+                                                <option value="">Choose One</option>
+                                                <option value="american">American</option>
+                                                <option value="arabian">Arabian</option>
+                                                <option value="northindian">North Indian</option>
+                                                <option value="continental">Continental</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputArea">Area</label>
+                                            <input type="text" class="form-control" name="restaurantArea" id="inputArea"
+                                                placeholder="Enter Area" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputCity">City</label>
+                                            <input type="text" class="form-control" name="restaurantCity" id="inputCity"
+                                                placeholder="Enter City" required>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputState">State</label>
+                                            <input type="text" placeholder="Enter State" name="restaurantState"
+                                                class="form-control" id="inputState" required>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputZip">Pincode</label>
+                                            <input type="number" class="form-control" name="restaurantPincode"
+                                                id="inputZip" placeholder="Enter 6 digit Pincode" required>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputCountry">Country</label>
+                                            <select class="form-control" id="inputCountry" name="restaurantCountry"
+                                                required>
+                                                <option value="">Choose One</option>
+                                                <option value="IN">India</option>
+                                                <option value="AU">Australia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="resKeywords">Special Keywords</label>
+                                            <textarea class="form-control" id="resKeywords"
+                                                placeholder="Enter Keywords separated by (,)" name="restaurantKeywords"
+                                                required></textarea>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPriceBracket">Price Bracket</label>
+                                            <select class="form-control" id="inputPriceBracket"
+                                                name="restaurantPriceBracket" required>
+                                                <option value="">Choose One</option>
+                                                <option value="cheap">Cheap</option>
+                                                <option value="mid">Mid Range</option>
+                                                <option value="high">High Range</option>
+                                                <option value="allrange">All In One</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">CREATE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 mb-3">
+                <div class="col">
+                    <div class="order-2">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2 mt-4">
+                            <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-plus" aria-hidden="true"></i> Dish
+                            </h1>
+                        </div>
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <form method="POST" action="/restaurant-owner/home/create/restaurant/dish">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCategory">Select Restaurant</label>
+                                            <select class="form-control" name="restaurantIdForDish" id="inputCategory"
+                                                required>
+                                                {{#if restaurantNameDropDown}}
+                                                {{#each restaurantNameDropDown}}
+                                                <option value="{{_id}}">{{restaurantName}}</option>
+                                                {{/each}}
+                                                {{else}}
+                                                <option value="">No restaurant Found. Please create one
+                                                </option>
+                                                {{/if}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDishName">Dish Name</label>
+                                            <input type="text" class="form-control" name="dishNameForDish"
+                                                id="inputDishName" placeholder="Enter Dish Name" required>
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                            <label for="inputDishDescription">Description</label>
+                                            <input type="text" class="form-control" name="descriptionForDish"
+                                                id="inputDishDescription" placeholder="Enter Dish Description" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputPrice">Price Per Unit</label>
+                                            <input type="number" class="form-control" name="pricePerUnitForDish"
+                                                id="inputPrice" placeholder="Enter Price in Rupees" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDiscount">Discount %</label>
+                                            <input type="number" class="form-control" name="discountForDish"
+                                                id="inputDiscount" placeholder="Enter Discount" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputFoodType">Food Type</label>
+                                            <select class="form-control" id="inputFoodType" name="foodTypeForDish"
+                                                required>
+                                                <option value="">Choose One</option>
+                                                <option value="vg">Veg</option>
+                                                <option value="nvg">Non-Veg</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">CREATE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
