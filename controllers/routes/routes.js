@@ -493,6 +493,60 @@ router.get("/restaurant/?:res_id", authController.redirectToHome, function(
   });
 });
 
+//Handle Forgot Password
+router.get("/forgotPassword", authController.redirectToHome, function(
+  req,
+  res
+) {
+  res.render("forgot-password", {
+    pageTitle: "Forgot Password"
+  });
+});
+router.post("/forgotPassword", function(req, res) {
+  if (Uservalidator.validateEmail(req.body.email)) {
+    console.log("VALID EMAIL");
+
+    UserModel.passwordReset(req.body.email, req, function(err, success) {
+      if (!err) {
+        console.log("PASS RESET SUCCESS: ", success);
+
+        res.render("forgot-password", {
+          pageTitle: "Forgot Password",
+          error: {
+            errorType: "success",
+            errorFocus: "Congrats!",
+            errorMsg: "Password Reset Link is Send to your Email-ID"
+          }
+        });
+      } else {
+        console.log("Error: ", err);
+      }
+    });
+  } else {
+    console.log("INVALID EMAIL");
+    res.render("forgot-password", {
+      pageTitle: "Forgot Password",
+      error: {
+        errorType: "warning",
+        errorFocus: "Oops!",
+        errorMsg: "Email ID should be of form: example@gmail.com"
+      }
+    });
+  }
+});
+router.get("/resetpassword/:id", function(req, res) {
+  var hashID = req.params.id;
+  console.log("ID to check: ", hashID);
+  /** @TODO Now Get the User Data for the respective hasID and store it in Session */
+
+  res.render("passwordreset", {
+    pageTitle: "Password Reset"
+  });
+});
+router.post("/resetpassword", function(req, res) {
+  //Update the New Password
+});
+
 router.post(consumerController);
 //The 404 Route (ALWAYS Keep this as the last route)
 router.get("*", function(req, res) {
