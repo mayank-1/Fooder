@@ -11,6 +11,8 @@ Built using Node.js, Express.js, Handlebars, Express-Session, MongoDB and other 
    - CLOUDINARY_CLOUD_NAME="cloud-name"
    - CLOUDINARY_API_KEY="api-key"
    - CLOUDINARY_API_SECRET="api-secret"
+   - GMAILFOODERID="emailID"
+   - GMAILFOODERPASS="emailPassword"
 
 # LIVE DEMO
 

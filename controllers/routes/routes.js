@@ -504,26 +504,30 @@ router.get("/forgotPassword", authController.redirectToHome, function(
 });
 router.post("/forgotPassword", function(req, res) {
   if (Uservalidator.validateEmail(req.body.email)) {
-    console.log("VALID EMAIL");
-
     UserModel.passwordReset(req.body.email, req, function(err, success) {
       if (!err) {
-        console.log("PASS RESET SUCCESS: ", success);
-
         res.render("forgot-password", {
           pageTitle: "Forgot Password",
           error: {
             errorType: "success",
             errorFocus: "Congrats!",
-            errorMsg: "Password Reset Link is Send to your Email-ID"
+            errorMsg:
+              "Password Reset Link is Sent to your Email-ID. Valid for only 2 Hours"
           }
         });
       } else {
-        console.log("Error: ", err);
+        res.render("forgot-password", {
+          pageTitle: "Forgot Password",
+          error: {
+            errorType: "danger",
+            errorFocus: "Sorry!",
+            errorMsg:
+              "Can't Process Your Request. Please Try Again After Sometime"
+          }
+        });
       }
     });
   } else {
-    console.log("INVALID EMAIL");
     res.render("forgot-password", {
       pageTitle: "Forgot Password",
       error: {
@@ -536,15 +540,52 @@ router.post("/forgotPassword", function(req, res) {
 });
 router.get("/resetpassword/:id", function(req, res) {
   var hashID = req.params.id;
-  console.log("ID to check: ", hashID);
-  /** @TODO Now Get the User Data for the respective hasID and store it in Session */
-
-  res.render("passwordreset", {
-    pageTitle: "Password Reset"
+  UserModel.getPassResetLinkVerify(hashID, function(error, success) {
+    if (!error) {
+      //Valid Link
+      req.session.userToReset = success;
+      res.render("passwordreset", {
+        pageTitle: "Password Reset",
+        linkExpired: false
+      });
+    } else {
+      //Link Expired
+      res.render("passwordreset", {
+        pageTitle: "Password Reset",
+        linkExpired: true
+      });
+    }
   });
 });
 router.post("/resetpassword", function(req, res) {
   //Update the New Password
+  var newPassword = req.body;
+  if (newPassword.newPass === newPassword.confirmNewPass) {
+    var userEmail = req.session.userToReset.email;
+    var updatePass = newPassword.newPass;
+    var resetInfo = { email: userEmail, pass: updatePass };
+    UserModel.updatePasswordUsingPassReset(resetInfo, function(err, success) {
+      if (!err) {
+        res.render("passwordreset", {
+          pageTitle: "Password Reset",
+          resetDone: true
+        });
+      } else {
+        res.render("passwordreset", {
+          pageTitle: "Password Reset",
+          linkExpired: false,
+          resetDone: false,
+          serverError: true
+        });
+      }
+    });
+  } else {
+    res.render("passwordreset", {
+      pageTitle: "Password Reset",
+      linkExpired: false,
+      passwordError: true
+    });
+  }
 });
 
 router.post(consumerController);
