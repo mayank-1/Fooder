@@ -13,7 +13,3 @@ Built using Node.js, Express.js, Handlebars, Express-Session, MongoDB and other 
    - CLOUDINARY_API_SECRET="api-secret"
    - GMAILFOODERID="emailID"
    - GMAILFOODERPASS="emailPassword"
-
-# LIVE DEMO
-
-https://team-fooder.herokuapp.com
